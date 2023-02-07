@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ALUGUEL</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <script src="https://unpkg.com/@popperjs/core@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"
+    defer></script>
+  <script src="/static/script.js" defer></script>
+  <script src="https://kit.fontawesome.com/6ad1eade19.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+  <main class="container bg-light mt-3 p-4">
+    <nav class="navbar navbar-dark bg-dark fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Aluguel-Carros</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar"
+          aria-controls="offcanvasDarkNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
+          aria-labelledby="offcanvasDarkNavbarLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Options</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+              aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  Search
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li>
+                    <div class="input-group">
+                      <form class="d-flex mt-3" role="search">
+                        <input id="input_get_id" class="form-control me-2" type="number" placeholder="ID" min="0">
+                        <button class="btn btn-success" onclick="loadCarro()">Search</button>
+                      </form>
+                    </div>
+                  </li>
+                  <li><button class="btn btn-info" type="submit" onclick="loadCarros()">Show All</button></li>
+                </ul>
+              </li>
+
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  Delete
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li>
+                    <div class="input-group">
+                      <form class="d-flex mt-3" role="search">
+                        <input class="form-control me-2" id="input_delete_id" type="number" placeholder="ID"
+                          aria-label="Search" min="0">
+                        <button type="button" class="btn btn-danger">Delete</button>
+                      </form>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="nav-item">
+                <button type="button" class="col-1 col-lg-3 btn btn-dark" data-bs-toggle="modal"
+                  data-bs-target="#addModal">Create</button>
+              </li>
+
+              <li class="nav-item">
+                <button type="button" class="col-1 col-lg-3 btn btn-dark" data-bs-toggle="modal"
+                  data-bs-target="#addModal">Update</button>
+              </li>
+
+
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+    </section>
+    <section class="container mt-4 pb-4">
+      <table class="table">
+        <thead class="bg-primary">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Marca</th>
+            <th scope="col">Ano</th>
+            <th scope="col">Diaria</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody class="table__tbody">
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="addModalLabel">Novo Carro</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="input-group">
+
+            <input type="text" id="input_post_modelo" class="col-6 form-control" placeholder="Modelo">
+            <input type="tel" id="input_post_marca" class="col-6 form-control" placeholder="Marca">
+            <input type="tel" id="input_post_ano" class="col-6 form-control" placeholder="Ano">
+
+          </div>
+
+          <div class="input-group">
+
+            <input type="tel" id="input_post_vDiaria" class="col-6 form-control mt-2" placeholder="Valor diária">
+            <input type="text" id="input_post_status" class="col-6 form-control mt-2" placeholder="Status">
+
+          </div>
+
+          <textarea id="input_post_observacoes" class="col-6 form-control mt-2" placeholder="Observacoes"
+            rows="2"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="col-6 btn btn-success" onclick="postCarro()"
+            data-bs-dismiss="modal">Adicionar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+
+
+</html>

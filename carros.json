@@ -1,0 +1,22 @@
+{
+  "carros": [
+    {
+      "id": 1,
+      "modelo": "Chevette",
+      "marca": "Chevrolet",
+      "ano": 1988,
+      "observacoes": "muito foda",
+      "vDiaria": 2.00,
+      "status": "livre"
+    },
+    {
+      "id": 2,
+      "modelo": "Opala",
+      "marca": "Chevrolet",
+      "ano": 1991,
+      "observacoes": "mais que foda",
+      "vDiaria": 4.00,
+      "status": "manutencao"
+    }
+  ]
+}
